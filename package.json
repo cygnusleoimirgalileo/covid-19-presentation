@@ -2,6 +2,7 @@
   "name": "cancer-biochemistry-presentation",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cygnusleoimirgalileo.github.io/covid-19-presentation",
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.6.0",
     "@react-three/drei": "^10.0.8",
