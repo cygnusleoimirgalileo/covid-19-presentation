@@ -123,4 +123,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Add any other relevant acknowledgments]
 
 <!-- Updated for Cloudflare Pages deployment fix -->
+<!-- GitHub Actions deployment configured -->
 
