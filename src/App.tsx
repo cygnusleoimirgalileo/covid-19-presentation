@@ -312,7 +312,7 @@ const SlideContentRenderer: React.FC = () => {
             case 'intro-1':
                 return (
                     <BasicSlide title={t('slides.intro-1.title')} sectionId={SectionType.INTRODUCTION}
-                                lottieAnimation="/assets/covid.json">
+                                lottieAnimation={`${process.env.PUBLIC_URL}/assets/covid.json`}>
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -346,7 +346,7 @@ const SlideContentRenderer: React.FC = () => {
                     <BasicSlide
                         title={t('slides.intro-2.title')}
                         sectionId={SectionType.INTRODUCTION}
-                        lottieAnimation="/assets/slide2.json"
+                        lottieAnimation={`${process.env.PUBLIC_URL}/assets/slide2.json`}
                     >
                         <div style={{
                             display: 'flex',
@@ -716,7 +716,7 @@ const SlideContentRenderer: React.FC = () => {
             case 'hall-1':
                 return (
                     <BasicSlide title={t('slides.hall-1.title')} sectionId={SectionType.HALLMARKS}
-                                lottieAnimation="/assets/lung.json">
+                                lottieAnimation={`${process.env.PUBLIC_URL}/assets/lung.json`}>
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -807,7 +807,7 @@ const SlideContentRenderer: React.FC = () => {
             case 'treat-1':
                 return (
                     <BasicSlide title={t('slides.treat-1.title')} sectionId={SectionType.TREATMENT}
-                                lottieAnimation="/assets/pill.json">
+                                lottieAnimation={`${process.env.PUBLIC_URL}/assets/pill.json`}>
                         <div style={{
                             width: '100%',
                             height: '100%',
@@ -838,7 +838,7 @@ const SlideContentRenderer: React.FC = () => {
                     <BasicSlide
                         title={t('slides.treat-3.title')}
                         sectionId={SectionType.TREATMENT}
-                        lottieAnimation="/assets/vaccine.json"
+                        lottieAnimation={`${process.env.PUBLIC_URL}/assets/vaccine.json`}
                     >
                         <div style={{
                             display: 'flex',

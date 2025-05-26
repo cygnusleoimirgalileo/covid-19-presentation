@@ -760,7 +760,8 @@ const Header = styled.header`
     left: 0;
     right: 0;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: ${props => props.theme.spacing.md};
     gap: ${props => props.theme.spacing.lg};
     background: rgba(0, 0, 0, 0.1);
@@ -780,6 +781,63 @@ const Header = styled.header`
   }
 `;
 
+const MobileStartButton = styled(motion.button)`
+  display: none;
+  
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,
+      ${props => props.theme.colors.accent.primary} 0%,
+      ${props => props.theme.colors.section.introduction} 100%
+    );
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-family: ${props => props.theme.fonts.secondary};
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 120px;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.sm}) {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.xs}) {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: 80px;
+  }
+`;
+
+const HeaderControls = styled.div`
+  display: flex;
+  gap: ${props => props.theme.spacing.md};
+  align-items: center;
+  
+  @media (max-width: ${props => props.theme.breakpoints.sm}) {
+    gap: ${props => props.theme.spacing.sm};
+  }
+`;
+
 const MainContent = styled.main<{ headerHeight: number }>`
   flex: 1;
   display: flex;
@@ -795,8 +853,8 @@ const MainContent = styled.main<{ headerHeight: number }>`
   @media (max-width: ${props => props.theme.breakpoints.md}) {
     padding-left: ${props => props.theme.spacing.md};
     padding-right: ${props => props.theme.spacing.md};
-    padding-top: calc(${props => props.headerHeight}px + ${props => props.theme.spacing.lg}); // This correctly accounts for the header
-    padding-bottom: ${props => props.theme.spacing.xl}; // Increased bottom specifically
+    padding-top: calc(${props => props.headerHeight}px + ${props => props.theme.spacing.lg});
+    padding-bottom: calc(${props => props.theme.spacing.xl} + 60px); // Extra space for button visibility
 
     align-items: flex-start;
     overflow-y: auto; 
@@ -806,19 +864,19 @@ const MainContent = styled.main<{ headerHeight: number }>`
   @media (max-width: ${props => props.theme.breakpoints.sm}) {
     padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.sm};
     padding-top: calc(${props => props.headerHeight}px + ${props => props.theme.spacing.md});
-    padding-bottom: ${props => props.theme.spacing.md};
+    padding-bottom: calc(${props => props.theme.spacing.lg} + 80px); // More space for smaller screens
   }
 
   @media (max-width: ${props => props.theme.breakpoints.xs}) {
     padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.xs};
     padding-top: calc(${props => props.headerHeight}px + ${props => props.theme.spacing.sm});
-    padding-bottom: ${props => props.theme.spacing.sm};
+    padding-bottom: calc(${props => props.theme.spacing.md} + 100px); // Even more space for very small screens
   }
 
   @media (max-height: 600px) and (max-width: ${props => props.theme.breakpoints.sm}) {
     padding: ${props => props.theme.spacing.sm};
     padding-top: calc(${props => props.headerHeight}px + ${props => props.theme.spacing.sm});
-    padding-bottom: ${props => props.theme.spacing.sm};
+    padding-bottom: calc(${props => props.theme.spacing.sm} + 60px);
   }
 `;
 
@@ -1724,8 +1782,13 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartPresentation }) => {
       </EffectsLayerContainer>
 
       <Header>
-        <ThemeSwitcher />
-        <LanguageSwitcher />
+        <HeaderControls>
+          <ThemeSwitcher/>
+          <LanguageSwitcher/>
+        </HeaderControls>
+        <MobileStartButton onClick={onStartPresentation}>
+          {t('welcome.startPresentation')}
+        </MobileStartButton>
       </Header>
 
       <MainContent headerHeight={headerHeight}>
