@@ -322,7 +322,7 @@ const faTranslations = {
     startPresentation: 'شروع ارائه',
     presenter: {
       name: 'علی شیرزادی',
-      name2: 'متین مالک',
+        name2: 'متین ملک',
       affiliation: 'دانشگاه شما'
     },
     supervisor: {
