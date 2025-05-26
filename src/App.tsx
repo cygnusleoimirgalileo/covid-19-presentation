@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import {HashRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 import { ThemeProvider } from './store/ThemeContext';
 import { LanguageProvider } from './store/LanguageContext';
 import GlobalStyles from './styles/GlobalStyles';
