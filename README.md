@@ -122,4 +122,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - The React and Three.js communities for their excellent tools
 - [Add any other relevant acknowledgments]
 
+<!-- Updated for Cloudflare Pages deployment fix -->
 
