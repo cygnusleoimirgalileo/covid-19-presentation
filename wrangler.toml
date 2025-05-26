@@ -1,0 +1,9 @@
+name = "covid-presentation"
+compatibility_date = "2024-01-15"
+
+[env.production]
+account_id = ""  # Add your Cloudflare account ID here
+
+# Pages configuration
+[[env.production.pages_build_output_dir]]
+pages_build_output_dir = "build"

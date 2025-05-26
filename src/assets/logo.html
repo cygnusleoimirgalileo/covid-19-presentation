@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9webdev Logo</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #f5f5f5;
+            --text-color: #333;
+            --text-light: #666;
+            --background-light: #ffffff;
+            --background-dark: #121212;
+            --text-dark: #f5f5f5;
+            --text-dark-light: #aaa;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            color: var(--text-dark);
+            background-color: var(--background-dark);
+        }
+
+        /* Demo Container */
+        .demo-container {
+            text-align: center;
+        }
+
+        /* Toggle Button */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .theme-toggle-btn {
+            background-color: #8b84ff;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            z-index: 2;
+            direction: ltr;
+            position: relative;
+
+            /* Cool entrance animation - made slower */
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation: logoSlideIn 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.15) 0%,
+                rgba(147, 51, 234, 0.15) 25%,
+                rgba(236, 72, 153, 0.15) 50%,
+                rgba(6, 182, 212, 0.15) 75%,
+                rgba(16, 185, 129, 0.15) 100%);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .logo:hover {
+            transform: translateY(-0.5px); /* Minimal lift */
+        }
+
+        .logo:hover::before {
+            opacity: 0; /* Remove glow effect completely */
+        }
+
+        .logo-icon {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.3) 0%,
+                rgba(147, 51, 234, 0.3) 30%,
+                rgba(236, 72, 153, 0.3) 60%,
+                rgba(6, 182, 212, 0.3) 100%
+            ),
+            rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3),
+                0 4px 16px rgba(147, 51, 234, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease; /* Faster transition */
+
+            /* Simplified icon entrance animation */
+            opacity: 0;
+            transform: scale(0.5);
+            animation: iconFadeIn 1s ease-out 0.5s forwards;
+        }
+
+        body.dark-mode .logo-icon {
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.3) 0%,
+                rgba(147, 51, 234, 0.3) 30%,
+                rgba(236, 72, 153, 0.3) 60%,
+                rgba(6, 182, 212, 0.3) 100%
+            ),
+            rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo:hover .logo-icon {
+            opacity: 0.95; /* Minimal opacity change only */
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(59, 130, 246, 0.4) 0deg,
+                rgba(147, 51, 234, 0.4) 90deg,
+                rgba(236, 72, 153, 0.4) 180deg,
+                rgba(6, 182, 212, 0.4) 270deg,
+                rgba(59, 130, 246, 0.4) 360deg
+            );
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(20, 20, 30, 0.9) 50%,
+                rgba(0, 0, 0, 0.8) 100%
+            );
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        body.dark-mode .logo-icon::after {
+            background: linear-gradient(135deg,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(20, 20, 30, 0.95) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+        }
+
+        .number-9 {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'SF Pro Display', 'Segoe UI Variable', 'Helvetica Neue', 'Arial', sans-serif;
+            background: linear-gradient(135deg,
+                #ffffff 0%,
+                #f8fafc 15%,
+                #e2e8f0 30%,
+                #cbd5e1 50%,
+                #94a3b8 70%,
+                #64748b 85%,
+                #475569 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
+                0 2px 6px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(59, 130, 246, 0.2);
+            letter-spacing: -1.2px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0.9;
+            transition: all 0.2s ease; /* Faster transition */
+
+            /* Number entrance animation - made slower */
+            opacity: 0;
+            transform: scale(2) rotate(360deg);
+            animation: numberBounceIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards;
+        }
+
+        .logo:hover .number-9 {
+            opacity: 0.9; /* Minimal opacity change only */
+        }
+
+        .text-container {
+            display: flex;
+            align-items: baseline;
+            gap: 0px;
+        }
+
+        .web-text {
+            font-size: 26px;
+            font-weight: 300;
+            font-family: 'Inter', 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: -0.8px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease; /* Faster transition */
+            position: relative;
+
+            /* Web text entrance animation - made slower */
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: textSlideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.8s forwards;
+        }
+
+        .web-text::after {
+            content: 'web';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(255, 255, 255, 0.1);
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        body.dark-mode .web-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .dev-text {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Inter', 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg,
+                #3b82f6 0%,
+                #6366f1 15%,
+                #8b5cf6 30%,
+                #a855f7 45%,
+                #ec4899 60%,
+                #f43f5e 75%,
+                #06b6d4 90%,
+                #10b981 100%);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.8px;
+            position: relative;
+            text-shadow: 0 2px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.2s ease; /* Faster transition */
+
+            /* Dev text entrance animation - made slower */
+            opacity: 0;
+            transform: translateX(30px);
+            animation: textSlideInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.1s forwards,
+                shimmer 4s ease-in-out 3.8s infinite;
+        }
+
+        .dev-text::after {
+            content: 'dev';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.3) 0%,
+                rgba(139, 92, 246, 0.3) 25%,
+                rgba(236, 72, 153, 0.3) 50%,
+                rgba(6, 182, 212, 0.3) 75%,
+                rgba(16, 185, 129, 0.3) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(6px);
+            z-index: -1;
+        }
+
+        .logo:hover .web-text {
+            opacity: 0.95; /* Minimal opacity change only */
+        }
+
+        .logo:hover .dev-text {
+            opacity: 0.95; /* Minimal opacity change only */
+        }
+
+        /* Responsive Logo Sizes */
+        .logo.small {
+            gap: 6px;
+        }
+
+        .logo.small .logo-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+        }
+
+        .logo.small .number-9 {
+            font-size: 20px;
+        }
+
+        .logo.small .web-text,
+        .logo.small .dev-text {
+            font-size: 22px;
+            letter-spacing: -0.6px;
+        }
+
+        .logo.large {
+            gap: 10px;
+        }
+
+        .logo.large .logo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+        }
+
+        .logo.large .number-9 {
+            font-size: 28px;
+        }
+
+        .logo.large .web-text,
+        .logo.large .dev-text {
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        /* Size Controls */
+        .size-controls {
+            margin-top: 80px;
+        }
+
+        .size-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .size-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .size-btn {
+            background-color: #8b84ff;
+        }
+
+        /* Animation Keyframes */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes logoSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateY(-5px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px) scale(1);
+            }
+        }
+
+        @keyframes iconFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes numberBounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+            }
+            60% {
+                opacity: 0.8;
+                transform: scale(0.9) rotate(-10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes textSlideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes textSlideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        /* Dark mode adjustments for text appearance */
+        body.dark-mode .web-text {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Restart animation button */
+        .restart-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<button class="theme-toggle-btn" id="theme-toggle">Toggle Dark Mode</button>
+
+<div class="demo-container">
+    <!-- The Logo Element -->
+    <a class="logo" href="#" id="logo">
+        <div class="logo-icon">
+            <div class="number-9">9</div>
+        </div>
+        <div class="text-container">
+            <span class="web-text">web</span><span class="dev-text">dev</span>
+        </div>
+    </a>
+
+    <!-- Controls to demonstrate logo sizes -->
+    <div class="size-controls">
+        <button class="size-btn" data-size="small">Small Logo</button>
+        <button class="size-btn" data-size="normal">Normal Logo</button>
+        <button class="size-btn" data-size="large">Large Logo</button>
+        <br>
+        <button class="restart-btn" id="restart-animations">Restart Animations</button>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+
+            // Save theme preference to localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Size Controls
+        const sizeButtons = document.querySelectorAll('.size-btn');
+        const logo = document.getElementById('logo');
+
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const size = this.dataset.size;
+
+                // Remove all size classes first
+                logo.classList.remove('small', 'large');
+
+                // Add appropriate size class
+                if (size === 'small') {
+                    logo.classList.add('small');
+                } else if (size === 'large') {
+                    logo.classList.add('large');
+                }
+                // 'normal' size is default, no class needed
+            });
+        });
+
+        // Restart Animations
+        const restartBtn = document.getElementById('restart-animations');
+        restartBtn.addEventListener('click', function() {
+            // Clone and replace the logo to restart animations
+            const oldLogo = document.getElementById('logo');
+            const newLogo = oldLogo.cloneNode(true);
+            oldLogo.parentNode.replaceChild(newLogo, oldLogo);
+
+            // Preserve any size classes
+            if (oldLogo.classList.contains('small')) {
+                newLogo.classList.add('small');
+            } else if (oldLogo.classList.contains('large')) {
+                newLogo.classList.add('large');
+            }
+
+            // Update the reference
+            logo = document.getElementById('logo');
+        });
+
+});
+</script>
+</body>
+</html>

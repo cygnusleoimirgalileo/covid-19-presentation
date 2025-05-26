@@ -1,46 +1,125 @@
-# Getting Started with Create React App
+# COVID-19 Viral Mechanisms Interactive Presentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive web-based presentation on SARS-CoV-2 viral mechanisms and ACE2 receptor interactions built using React,
+Three.js, and modern web technologies.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Welcome Page** - Modern, animated landing page with presentation overview
+- **Dynamic Slide System** - Smooth transitions between slides and sections
+- **Interactive 3D Molecular Models** - Using Three.js to visualize viral protein structures
+- **Animated Cell Comparisons** - Visual representation of healthy vs infected cells
+- **Interactive Pathway Diagrams** - Click-to-explore viral entry mechanisms
+- **Data Visualization** - Charts and graphs for COVID-19 statistics and molecular data
+- **Multi-language Support** - Available in English and Persian (Farsi)
+- **Theme System** - Light and dark mode support
+- **Navigation System** - Sidebar outline, progress tracking, and keyboard controls
+- **Responsive Design** - Works on desktop, tablet, and mobile devices
 
-### `npm start`
+## Application Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Routes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **/** - Welcome/Landing page with presentation overview
+- **/presentation** - Main presentation with slides and navigation
 
-### `npm test`
+### Welcome Page Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Animated Lottie background with viral/molecular biology theme
+- Presentation overview and feature highlights
+- Presenter and supervisor information
+- Smooth animations and transitions
+- Theme and language switchers
+- Modern, responsive design
 
-### `npm run build`
+## Content Sections
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Introduction** - SARS-CoV-2 as a molecular machine and ACE2 receptor gateway
+2. **Cellular Biology** - Viral entry mechanisms, cellular hijacking, organelle remodeling, and viral assembly
+3. **Molecular Pathways** - ACE2-angiotensin disruption, inflammatory cascades, coagulation activation, and immune
+   evasion
+4. **Clinical Manifestations** - Multi-organ system involvement and molecular damage patterns
+5. **Treatment Approaches** - Antiviral drugs, monoclonal antibodies, vaccines, and host-directed therapies
+6. **Statistics & Data** - Epidemiological data, ACE2 expression correlations, and treatment efficacy
+7. **Future Directions** - Variant evolution, next-generation vaccines, and pandemic preparedness
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React 19 with TypeScript
+- React Router DOM for navigation
+- Styled-Components for styling
+- Three.js and React Three Fiber for 3D visualizations
+- Framer Motion for animations
+- GSAP for advanced animations
+- Lottie animations (@lottiefiles/react-lottie-player)
+- Recharts for data visualization
+- i18next for internationalization
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerequisites
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js (v14+)
+- npm or yarn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone this repository
 
-## Learn More
+```
+git clone <repository-url>
+cd cancer-biochemistry-presentation
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Install dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm install
+```
+
+3. Start the development server
+
+```
+npm start
+```
+
+The application should now be running at `http://localhost:3000`
+
+## Usage
+
+- Use **arrow keys** to navigate between slides
+- Press **spacebar** to advance to the next slide
+- Press **F** to toggle presentation mode
+- Click on **interactive elements** to reveal more information
+
+## Project Structure
+
+```
+src/
+  ├── components/         # Reusable UI components
+  │    ├── 3d/           # Three.js components
+  │    ├── animations/    # Animated components
+  │    ├── charts/        # Data visualization 
+  │    ├── interactive/   # Interactive elements
+  │    ├── layout/        # Layout components
+  │    ├── navigation/    # Navigation controls
+  │    └── slides/        # Slide templates
+  ├── pages/              # Page components
+  │    └── slides/        # Individual slide content
+  ├── store/              # State management
+  ├── styles/             # Global styles and theme
+  ├── types/              # TypeScript type definitions
+  └── utils/              # Utility functions and data
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- SARS-CoV-2 and ACE2 receptor research references
+- The React and Three.js communities for their excellent tools
+- [Add any other relevant acknowledgments]
+
+
